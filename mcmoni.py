@@ -1,5 +1,6 @@
 import memcache
 import sys
+import time
 
 key='defkey'
 if len(sys.argv) > 1:
@@ -9,6 +10,6 @@ if len(sys.argv) > 1:
 mc_addr = 'lmp-dev.valhalla.local:11211'
 mc = memcache.Client( [mc_addr ], debug=1)
 
-print( 'set',  mc.set(key, '1') )
-print( 'incr', mc.incr(key) )
-print( 'get',  mc.get(key) )
+while 1:
+  print( 'moni %s: %s' % (key, mc.get(key)) )
+  time.sleep(1)
